@@ -2,3 +2,5 @@ Plan.txt
 .settings/
 ComputerStoreWithSrc.jar
 ComputerStore.jar
+.classpath
+.project
