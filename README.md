@@ -17,5 +17,3 @@ This project, developed as a RGR project, lets you effortlessly handle departmen
 
 - **Java**: Core language.
 - **Swing**: User interface.
-
-## 📁 Project Structure
