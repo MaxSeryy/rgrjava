@@ -45,13 +45,11 @@ public class Main {
         frame = new JFrame("Computer Store Management");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 450);
-        frame.setMinimumSize(new Dimension(600, 450)); // Set minimum size for the frame
+        frame.setMinimumSize(new Dimension(600, 450));//def600x450
         frame.setLayout(new BorderLayout());
 
-        // Create sample data
         store = SampleData.createSampleStore();
 
-        // Create the tree nodes
         DefaultMutableTreeNode root = new DefaultMutableTreeNode(store.getName());
         for (Department department : store.getDepartments()) {
             DefaultMutableTreeNode departmentNode = new DefaultMutableTreeNode(department.getName());
@@ -66,28 +64,24 @@ public class Main {
             root.add(departmentNode);
         }
 
-        // Create the tree model and tree
         treeModel = new DefaultTreeModel(root);
         tree = new JTree(treeModel);
         JScrollPane treeScrollPane = new JScrollPane(tree);
 
-        // Expand all nodes
         expandAllNodes(tree, 0, tree.getRowCount());
 
-        // Create control panel
         JPanel controlPanel = new JPanel();
-        controlPanel.setLayout(new BoxLayout(controlPanel, BoxLayout.Y_AXIS)); // Use BoxLayout for vertical alignment
+        controlPanel.setLayout(new BoxLayout(controlPanel, BoxLayout.Y_AXIS));
         JButton addButton = new JButton("Add");
         JButton editButton = new JButton("Edit");
         JButton removeButton = new JButton("Remove");
         JButton saveButton = new JButton("Save");
         JButton loadButton = new JButton("Load");
-        JButton calculateButton = new JButton("Calculate");
+        JButton calculateButton = new JButton("<html>Calculate<br>Find</html>");
         JButton infoButton = new JButton("<html>Developer<br>Info</html>");
         JButton techButton = new JButton("Technical");
 
-        // Set fixed height for buttons
-        Dimension buttonSize = new Dimension(100, 50); // Width 100, Height 50
+        Dimension buttonSize = new Dimension(100, 50); //def100x50
         addButton.setMaximumSize(buttonSize);
         editButton.setMaximumSize(buttonSize);
         removeButton.setMaximumSize(buttonSize);
@@ -97,7 +91,6 @@ public class Main {
         infoButton.setMaximumSize(buttonSize);
         techButton.setMaximumSize(buttonSize);
 
-        // Center text in buttons
         addButton.setHorizontalAlignment(SwingConstants.CENTER);
         addButton.setVerticalAlignment(SwingConstants.CENTER);
         editButton.setHorizontalAlignment(SwingConstants.CENTER);
@@ -126,19 +119,23 @@ public class Main {
         saveButton.addActionListener(e -> treeActions.saveToFile());
 
         loadButton.addActionListener(e -> treeActions.loadFromFile());
-
+        
         calculateButton.addActionListener(e -> {
             JPopupMenu calculateMenu = new JPopupMenu();
             JMenuItem totalSumItem = new JMenuItem("Total Sum");
             JMenuItem selectedBranchSumItem = new JMenuItem("Selected Branch Sum");
+            JMenuItem findMostExpensiveItem = new JMenuItem("Find Most Expensive Product");
 
             totalSumItem.addActionListener(ev -> treeActions.calculateTotalSum());
             totalSumItem.setLocation(frame.getX() + frame.getWidth() / 2, frame.getY() + frame.getHeight() / 2);
             selectedBranchSumItem.addActionListener(ev -> treeActions.calculateSelectedBranchSum());
             selectedBranchSumItem.setLocation(frame.getX() + frame.getWidth() / 2, frame.getY() + frame.getHeight() / 2);
+            findMostExpensiveItem.addActionListener(ev -> treeActions.findMostExpensiveProduct());
+            findMostExpensiveItem.setLocation(frame.getX() + frame.getWidth() / 2, frame.getY() + frame.getHeight() / 2);
 
             calculateMenu.add(totalSumItem);
             calculateMenu.add(selectedBranchSumItem);
+            calculateMenu.add(findMostExpensiveItem);
             calculateMenu.show(calculateButton, calculateButton.getWidth() / 2, calculateButton.getHeight() / 2);
         });
 
@@ -148,7 +145,6 @@ public class Main {
             infoFrame.setVisible(true);
         });
 
-        // Create the technical menu
         JPopupMenu techMenu = new JPopupMenu();
         JMenuItem tsMenuItem = new JMenuItem("Technical Specification");
         JMenuItem classDiagramMenuItem = new JMenuItem("Class Diagram");
