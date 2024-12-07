@@ -1,6 +1,8 @@
 Plan.txt
+.vscode
 .settings/
 ComputerStoreWithSrc.jar
 ComputerStore.jar
+bin/
 .classpath
 .project

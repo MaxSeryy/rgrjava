@@ -1,4 +1,3 @@
-// EditStoreDialog.java
 import javax.swing.*;
 import java.awt.*;
 
@@ -21,8 +20,12 @@ public class EditStoreDialog extends JDialog {
 
         JButton confirmButton = new JButton("Confirm");
         confirmButton.addActionListener(e -> {
-            confirmed = true;
-            setVisible(false);
+            if (nameField.getText().trim().isEmpty() || addressField.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please fill all fields", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                confirmed = true;
+                setVisible(false);
+            }
         });
         add(confirmButton);
 
@@ -31,6 +34,7 @@ public class EditStoreDialog extends JDialog {
         add(cancelButton);
 
         pack();
+
         int x = owner.getX() + owner.getWidth();
         int y = owner.getY();
         setLocation(x, y);
@@ -47,6 +51,4 @@ public class EditStoreDialog extends JDialog {
     public boolean isConfirmed() {
         return confirmed;
     }
-
-    
 }

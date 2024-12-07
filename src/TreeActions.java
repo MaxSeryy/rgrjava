@@ -345,6 +345,35 @@ public class TreeActions {
                 .sum();
     }
 
+    public void findMostExpensiveProduct() {
+        Product mostExpensiveProduct = null;
+        Category mostExpensiveCategory = null;
+        Department mostExpensiveDepartment = null;
+
+        for (Department department : store.getDepartments()) {
+            for (Category category : department.getCategories()) {
+                for (Product product : category.getProducts()) {
+                    if (mostExpensiveProduct == null || product.getPrice() > mostExpensiveProduct.getPrice()) {
+                        mostExpensiveProduct = product;
+                        mostExpensiveCategory = category;
+                        mostExpensiveDepartment = department;
+                    }
+                }
+            }
+        }
+
+        if (mostExpensiveProduct != null) {
+            String message = String.format("Department: %s\nCategory: %s\nProduct: %s - $%.2f",
+                    mostExpensiveDepartment.getName(),
+                    mostExpensiveCategory.getName(),
+                    mostExpensiveProduct.getName(),
+                    mostExpensiveProduct.getPrice());
+            JOptionPane.showMessageDialog(frame, message, "Most Expensive Product", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(frame, "No products found.", "Most Expensive Product", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
     public void showTechnicalSpecification() {
         String ts = "Технічне завдання\n\n" +
                 "1. Мета проекту\n" +
@@ -412,34 +441,5 @@ public class TreeActions {
                 diagramLabel.setIcon(new ImageIcon(scaledImage));
             }
         });
-    }
-
-    public void findMostExpensiveProduct() {
-        Product mostExpensiveProduct = null;
-        Category mostExpensiveCategory = null;
-        Department mostExpensiveDepartment = null;
-
-        for (Department department : store.getDepartments()) {
-            for (Category category : department.getCategories()) {
-                for (Product product : category.getProducts()) {
-                    if (mostExpensiveProduct == null || product.getPrice() > mostExpensiveProduct.getPrice()) {
-                        mostExpensiveProduct = product;
-                        mostExpensiveCategory = category;
-                        mostExpensiveDepartment = department;
-                    }
-                }
-            }
-        }
-
-        if (mostExpensiveProduct != null) {
-            String message = String.format("Department: %s\nCategory: %s\nProduct: %s - $%.2f",
-                    mostExpensiveDepartment.getName(),
-                    mostExpensiveCategory.getName(),
-                    mostExpensiveProduct.getName(),
-                    mostExpensiveProduct.getPrice());
-            JOptionPane.showMessageDialog(frame, message, "Most Expensive Product", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(frame, "No products found.", "Most Expensive Product", JOptionPane.INFORMATION_MESSAGE);
-        }
     }
 }

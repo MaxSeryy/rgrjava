@@ -1,6 +1,5 @@
 public class SampleData {
     public static ComputerStore createSampleStore() {
-        // Create some data
         Product dellXPS = new Product("1", "Dell XPS 13", 999.99);
         Product macBookPro = new Product("2", "MacBook Pro", 1299.99);
         Product hpSpectre = new Product("3", "HP Spectre x360", 1199.99);

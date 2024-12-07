@@ -20,8 +20,12 @@ public class AddCategoryDialog extends JDialog {
 
         JButton confirmButton = new JButton("Confirm");
         confirmButton.addActionListener(e -> {
-            confirmed = true;
-            setVisible(false);
+            if (nameField.getText().trim().isEmpty() || responsiblePersonField.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please fill all fields", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                confirmed = true;
+                setVisible(false);
+            }
         });
         add(confirmButton);
 
