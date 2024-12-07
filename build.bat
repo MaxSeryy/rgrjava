@@ -1,20 +1,9 @@
 @echo off
-setlocal
-
-rem
-set SRC_DIR=src
-set BIN_DIR=bin
-
-rem
-if not exist %BIN_DIR% (
-    mkdir %BIN_DIR%
-)
-
-rem 
-javac -d %BIN_DIR% %SRC_DIR%\*.java
-
-rem
-jar cfe ComputerStore.jar Main -C %BIN_DIR% .
-
-echo Build completed.
-endlocal
+echo Compiling Java project...
+javac -d bin src\*.java
+echo Copying resources...
+xcopy src\foto.jpg bin\ /Y
+xcopy src\d.png bin\ /Y
+echo Creating JAR file...
+jar cfe ComputerStore.jar Main -C bin .
+echo Build complete: ComputerStore.jar
