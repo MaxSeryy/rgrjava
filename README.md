@@ -10,7 +10,6 @@ This project, developed as a RGR project, lets you effortlessly handle departmen
 - 📂 **Categories**: Organize seamlessly.
 - 🛒 **Products**: Handle effortlessly.
 - 💾 **Data**: Save and load anytime.
-- 👨‍💻 **Developer Info**: Meet the creator.
 - 📜 **Specs**: View technical details.
 - 📊 **Diagram**: Visualize the model.
 
