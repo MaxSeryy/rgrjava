@@ -50,7 +50,7 @@ public class InfoFrame {
         JTextArea txtrName = new JTextArea();
         txtrName.setFont(new Font("Monospaced", Font.PLAIN, 14));
         txtrName.setEditable(false);
-        txtrName.setText("Name: Max Siryk\r\nGroup: KI-233\r\nEmail: maxsiryk@stu.cn.ua");
+        txtrName.setText("created by MaxSeryy");
     
         JScrollPane scrollPane = new JScrollPane(txtrName);
         frame.getContentPane().add(scrollPane, BorderLayout.CENTER);

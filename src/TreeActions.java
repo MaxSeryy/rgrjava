@@ -3,7 +3,6 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 
-
 import java.awt.*;
 import java.io.*;
 
@@ -39,7 +38,8 @@ public class TreeActions {
         AddDepartmentDialog dialog = new AddDepartmentDialog(frame);
         dialog.setVisible(true);
         if (dialog.isConfirmed()) {
-            Department newDepartment = new Department(String.valueOf(store.getDepartments().size() + 1), dialog.getDepartmentName(), dialog.getManager());
+            Department newDepartment = new Department(String.valueOf(store.getDepartments().size() + 1),
+                    dialog.getDepartmentName(), dialog.getManager());
             store.addDepartment(newDepartment);
             addNodeToTree(selectedNode, newDepartment.getName());
         }
@@ -64,7 +64,8 @@ public class TreeActions {
         AddCategoryDialog dialog = new AddCategoryDialog(frame);
         dialog.setVisible(true);
         if (dialog.isConfirmed()) {
-            Category newCategory = new Category(String.valueOf(department.getCategories().size() + 1), dialog.getCategoryName(), dialog.getResponsiblePerson());
+            Category newCategory = new Category(String.valueOf(department.getCategories().size() + 1),
+                    dialog.getCategoryName(), dialog.getResponsiblePerson());
             department.addCategory(newCategory);
             addNodeToTree(selectedNode, newCategory.getName());
         }
@@ -74,7 +75,8 @@ public class TreeActions {
         AddProductDialog dialog = new AddProductDialog(frame);
         dialog.setVisible(true);
         if (dialog.isConfirmed()) {
-            Product newProduct = new Product(String.valueOf(category.getProducts().size() + 1), dialog.getProductName(), dialog.getPrice());
+            Product newProduct = new Product(String.valueOf(category.getProducts().size() + 1), dialog.getProductName(),
+                    dialog.getPrice());
             category.addProduct(newProduct);
             addNodeToTree(selectedNode, newProduct.getName() + " - $" + newProduct.getPrice());
         }
@@ -100,7 +102,7 @@ public class TreeActions {
             }
         }
     }
-    
+
     private void editRoot(DefaultMutableTreeNode selectedNode, String nodeName) {
         EditStoreDialog dialog = new EditStoreDialog(frame, store.getName(), store.getAddress());
         dialog.setVisible(true);
@@ -268,7 +270,8 @@ public class TreeActions {
             for (Category category : department.getCategories()) {
                 DefaultMutableTreeNode categoryNode = new DefaultMutableTreeNode(category.getName());
                 for (Product product : category.getProducts()) {
-                    DefaultMutableTreeNode productNode = new DefaultMutableTreeNode(product.getName() + " - $" + product.getPrice());
+                    DefaultMutableTreeNode productNode = new DefaultMutableTreeNode(
+                            product.getName() + " - $" + product.getPrice());
                     categoryNode.add(productNode);
                 }
                 departmentNode.add(categoryNode);
@@ -370,62 +373,63 @@ public class TreeActions {
                     mostExpensiveProduct.getPrice());
             JOptionPane.showMessageDialog(frame, message, "Most Expensive Product", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(frame, "No products found.", "Most Expensive Product", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "No products found.", "Most Expensive Product",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
     public void showTechnicalSpecification() {
-        String ts = "Технічне завдання\n\n" +
-                "1. Мета проекту\n" +
-                "Розробити програму для управління комп'ютерним магазином, яка дозволяє додавати, редагувати та \n" + 
-                "видаляти відділи, категорії та продукти, а також зберігати та завантажувати дані з файлу.\n\n" +
-                "2. Функціональні вимоги\n" +
-                "2.1. Додавання, редагування та видалення відділів, категорій та продуктів.\n" +
-                "2.2. Збереження даних магазину у файл та завантаження з файлу.\n" +
-                "2.3. Обчислення загальної суми всіх продуктів та суми вибраної гілки.\n" +
-                "2.4. Виведення інформації про розробника.\n" +
-                "2.5. Виведення технічного завдання.\n" +
-                "2.6. Виведення діаграми класів моделі предметної області.\n\n" +
-                "3. Нефункціональні вимоги\n" +
-                "3.1. Інтерфейс користувача повинен бути реалізований за допомогою Swing.\n" +
-                "3.2. Дані повинні зберігатися у форматі серіалізованих об'єктів Java.\n\n" +
-                "4. Структура даних\n" +
-                "4.1. ComputerStore: назва магазину, адреса, список відділів.\n" +
-                "4.2. Department: назва відділу, відповідальний менеджер, список категорій.\n" +
-                "4.3. Category: назва категорії, відповідальна особа, список продуктів.\n" +
-                "4.4. Product: ID товару, назва, ціна.\n\n" +
-                "5. Розробник\n" +
-                "Максим Сірик, група KI-233, email: maxsiryk@stu.cn.ua";
+        String ts = "        Technical Assignment\n\n" +
+                "1. Project Goal\n" +
+                "Develop a program for managing a computer store that allows adding, editing, and \n" +
+                "deleting departments, categories, and products, as well as saving and loading data from a file.\n\n" +
+                "2. Functional Requirements\n" +
+                "2.1. Adding, editing, and deleting departments, categories, and products.\n" +
+                "2.2. Saving store data to a file and loading from a file.\n" +
+                "2.3. Calculating the total sum of all products and the sum of a selected branch.\n" +
+                "2.4. Displaying developer information.\n" +
+                "2.5. Displaying the technical assignment.\n" +
+                "2.6. Displaying the class diagram of the domain model.\n\n" +
+                "3. Non-functional Requirements\n" +
+                "3.1. The user interface should be implemented using Swing.\n" +
+                "3.2. Data should be stored in the format of serialized Java objects.\n\n" +
+                "4. Data Structure\n" +
+                "4.1. ComputerStore: store name, address, list of departments.\n" +
+                "4.2. Department: department name, responsible manager, list of categories.\n" +
+                "4.3. Category: category name, responsible person, list of products.\n" +
+                "4.4. Product: product ID, name, price.\n\n" +
+                "5. Developer\n" +
+                "MaxSeryy";
 
-    JFrame tsFrame = new JFrame("Technical Specification");
-    tsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    JTextArea textArea = new JTextArea(ts);
-    textArea.setEditable(false);
-    tsFrame.getContentPane().add(new JScrollPane(textArea));
+        JFrame tsFrame = new JFrame("Technical Specification");
+        tsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        JTextArea textArea = new JTextArea(ts);
+        textArea.setEditable(false);
+        tsFrame.getContentPane().add(new JScrollPane(textArea));
 
-    tsFrame.setSize(600, 500);
+        tsFrame.setSize(600, 500);
 
-    tsFrame.setLocation(frame.getX() + frame.getWidth(), frame.getY());
+        tsFrame.setLocation(frame.getX() + frame.getWidth(), frame.getY());
 
-    tsFrame.setVisible(true);
-        
+        tsFrame.setVisible(true);
+
     }
 
     public void showClassDiagram() {
         ImageIcon diagramIcon = new ImageIcon(getClass().getResource("/d.png"));
         JLabel diagramLabel = new JLabel(diagramIcon);
-    
+
         JScrollPane scrollPane = new JScrollPane(diagramLabel);
         scrollPane.setPreferredSize(new Dimension(800, 600));
-    
+
         JFrame diagramFrame = new JFrame("Class Diagram");
         diagramFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         diagramFrame.getContentPane().add(scrollPane);
-    
+
         diagramFrame.setSize(800, 600);
         diagramFrame.setLocation(frame.getX() + frame.getWidth(), frame.getY());
         diagramFrame.setVisible(true);
-    
+
         scrollPane.addMouseWheelListener(e -> {
             if (e.isControlDown()) {
                 int notches = e.getWheelRotation();
